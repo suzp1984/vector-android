@@ -955,7 +955,7 @@ public class CommonActivityUtils {
                                                    Room room = finalSession.getDataHandler().getRoom((String) params.get(VectorRoomActivity.EXTRA_ROOM_ID));
 
                                                    if ((null != room) && room.isInvited()) {
-                                                       String displayName = VectorUtils.getRoomDisplayname(fromActivity, finalSession, room);
+                                                       String displayName = VectorUtils.getRoomDisplayName(fromActivity, finalSession, room);
 
                                                        if (null != displayName) {
                                                            intent.putExtra(VectorRoomActivity.EXTRA_DEFAULT_NAME, displayName);
@@ -1580,7 +1580,10 @@ public class CommonActivityUtils {
             if (IMXCall.END_CALL_REASON_UNDEFINED != aCallEndReason) {
                 switch (aCallEndReason) {
                     case IMXCall.END_CALL_REASON_PEER_HANG_UP:
-                        CommonActivityUtils.displayToastOnUiThread(aCallingActivity, aCallingActivity.getString(R.string.call_error_peer_hangup));
+                        if(aCallingActivity instanceof InComingCallActivity)
+                            CommonActivityUtils.displayToastOnUiThread(aCallingActivity, aCallingActivity.getString(R.string.call_error_peer_cancelled_call));
+                        else
+                            CommonActivityUtils.displayToastOnUiThread(aCallingActivity, aCallingActivity.getString(R.string.call_error_peer_hangup));
                         break;
 
                     case IMXCall.END_CALL_REASON_PEER_HANG_UP_ELSEWHERE:

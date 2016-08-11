@@ -43,6 +43,8 @@
     <string name="report_content">Report content</string>
     <string name="decline">Decline</string>
     <string name="active_call">Active call</string>
+    <string name="ongoing_conference_call">Ongoing conference call</string>
+    <string name="cannot_start_call">Cannot start the call, please try later</string>
     <string name="room_url">Room URL</string>
     <string name="missing_permissions_warning">"Due to missing permissions, some features may be missing..</string>
 
@@ -357,6 +359,7 @@
     <string name="call_error_answered_elsewhere">call answered elsewhere</string>
     <string name="call_error_peer_hangup">peer hung up</string>
     <string name="call_error_peer_hangup_elsewhere">call hung up elsewhere</string>
+    <string name="call_error_peer_cancelled_call">call cancelled</string>
 
     <string name="action_accept">ACCEPT</string>
     <string name="action_ignore">IGNORE</string>
