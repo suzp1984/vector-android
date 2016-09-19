@@ -614,13 +614,10 @@ public class VectorMemberDetailsActivity extends MXCActionBarActivity implements
                             supportedActions.add(ITEM_ACTION_SET_ADMIN);
                         }
 
-                        // if the member id is a mail (ie a user contact list), just skip IGNORE/UNIGNORE actions
-                        if(!android.util.Patterns.EMAIL_ADDRESS.matcher(mMemberId).matches()) {
-                            if (!mSession.isUserIgnored(mRoomMember.getUserId())) {
-                                supportedActions.add(ITEM_ACTION_IGNORE);
-                            } else {
-                                supportedActions.add(ITEM_ACTION_UNIGNORE);
-                            }
+                        if (!mSession.isUserIgnored(mRoomMember.getUserId())) {
+                            supportedActions.add(ITEM_ACTION_IGNORE);
+                        } else {
+                            supportedActions.add(ITEM_ACTION_UNIGNORE);
                         }
                     }
                 } else if (TextUtils.equals(membership, RoomMember.MEMBERSHIP_LEAVE)) {
