@@ -614,10 +614,13 @@ public class VectorMemberDetailsActivity extends MXCActionBarActivity implements
                             supportedActions.add(ITEM_ACTION_SET_ADMIN);
                         }
 
-                        if (!mSession.isUserIgnored(mRoomMember.getUserId())) {
-                            supportedActions.add(ITEM_ACTION_IGNORE);
-                        } else {
-                            supportedActions.add(ITEM_ACTION_UNIGNORE);
+                        // if the member id is a mail (ie a user contact list), just skip IGNORE/UNIGNORE actions
+                        if(!android.util.Patterns.EMAIL_ADDRESS.matcher(mMemberId).matches()) {
+                            if (!mSession.isUserIgnored(mRoomMember.getUserId())) {
+                                supportedActions.add(ITEM_ACTION_IGNORE);
+                            } else {
+                                supportedActions.add(ITEM_ACTION_UNIGNORE);
+                            }
                         }
                     }
                 } else if (TextUtils.equals(membership, RoomMember.MEMBERSHIP_LEAVE)) {
@@ -645,10 +648,13 @@ public class VectorMemberDetailsActivity extends MXCActionBarActivity implements
         } else if (!TextUtils.isEmpty(mMemberId)) {
             supportedActions.add(ITEM_ACTION_START_CHAT);
 
-            if (!mSession.isUserIgnored(mMemberId)) {
-                supportedActions.add(ITEM_ACTION_IGNORE);
-            } else {
-                supportedActions.add(ITEM_ACTION_UNIGNORE);
+            // if the member id is a mail (ie a user contact list), just skip IGNORE/UNIGNORE actions
+            if(!android.util.Patterns.EMAIL_ADDRESS.matcher(mMemberId).matches()) {
+                if (!mSession.isUserIgnored(mMemberId)) {
+                    supportedActions.add(ITEM_ACTION_IGNORE);
+                } else {
+                    supportedActions.add(ITEM_ACTION_UNIGNORE);
+                }
             }
         }
 
